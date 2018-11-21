@@ -1,0 +1,79 @@
+Course Project: Shiny Application and Reproducible Pitch
+========================================================
+author: Anna Ryzhokhina
+date: 20 November 2018
+autosize: true
+
+Overview
+========================================================
+This application was built as part of a deliverable for the course Developing Data Products which indeed a course in Coursera Data Science Specialization.
+
+The app developed for the first part of the assignment demo is avalilable at: https://ryzhokhina.shinyapps.io/distributionsamplemean/
+
+Source code for ui.R and server.R files are available on the GitHub repo: https://github.com/ryzhokhina/ShinyAppReproduciblePitch
+
+Application functionality
+========================================================
+This example builds to illustrate how the distribution of sample means becomes Gaussian with increasing sample size and why <b>SEM=sd/sqrt(n)</b>.
+
+The user can define the sample size, and the number of samples, to obtain the sampling distribution for the sample means.
+The user should be able to verify that, if the assumptions of the CLT are satisfied, the sample mean follows a normal distribution with mean equal to the population mean and standard deviation inversely proportional to the sample size.
+
+Example for Uniform distribution
+========================================================
+Generate 100 samples of normal distribution and calculate means for lenght of samples 10, 100 and 1000
+
+```{r}
+ means10 = 1:100
+    for (i in 1:10) {
+      means10[i] = mean(runif(10))
+    }
+ means100 = 1:100
+    for (i in 1:100) {
+      means100[i] = mean(runif(100))
+    }
+ means1000 = 1:100
+    for (i in 1:100) {
+      means1000[i] = mean(runif(1000))
+    }
+
+```
+
+Distribution of Sample Means
+========================================================
+
+```{r, echo=FALSE, fig.align = "center"}
+par(mfrow=c(1,3),cex =1.2)
+
+hist(means10,10, col = "orange", main = "", xlab = "n = 10")
+hist(means100,10,  col = "orange",main = "", xlab = "n = 100")
+hist(means1000,10, col = "orange", main = "", xlab = "n = 1000")
+
+```
+***
+
+When n increases:
+ 1. the distributions becomes more and more normal.
+ 2. the spread of the distributions decreases.
+
+More examples the user can show using the application.
+
+Installation Manual
+========================================================
+<font size="6">
+The application can be accessed online on RStudio's Shinyapp Server (recommended) or it can be downloaded from github and run on the user's computer.
+Download the Source code of app from Github.
+
+<h6>Files to download :</h6>
+1. server.R
+2. ui.R
+3. pop.csv
+
+<h6> Running the App: </h6>
+Create a new directory and place the three files there. Open all files in your R IDE and enter the following lines on your R console.
+
+```{r, eval=FALSE}
+library(shiny)
+runApp()
+```
+</font>
